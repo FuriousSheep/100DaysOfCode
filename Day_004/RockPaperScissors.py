@@ -4,12 +4,15 @@ def main():
     moves = ["Rock", "Paper", "Scissors"]
     print("Let's play Rock Paper Scissors with Depresso3000!")
     playerMove = int(input("Choose rock (0), paper (1) or scissors (2)\n"))
+    
     if playerMove not in [0, 1, 2]:
         print ("You're an idiot and you will die unloved")
         return
+    
     compMove = r.randint(0, 2)
     print(f"You play {moves[playerMove]}, and Depresso3000 plays {moves[compMove]}")
     result = playerMove - compMove
+    
     if result in [1, -2]:
         print("You may win today, but Depresso3000 will feast on your tears")
     elif result == 0:
