@@ -83,17 +83,17 @@ def initHangman():
 def init():
     for i in range(0,5):
         clear()
+        print(f"""                                     
+                                /            |   |   /\   |\  |  /¨¨  |\  /|   /\   |\  |             \\
+                                |----------- |---|  /--\  | \ | |  -- | \/ |  /--\  | \ |   -----------|
+                                \            |   | /    \ |  \|  \../ |    | /    \ |  \|             /
+                    
+                                                        Begins in {5-i}...
+        """)
         print("WELCOME TO HANGMAN!")
         print("The game where every time you make a mistake you bring someone else closer to their death!")
         print("Depresso3000 is thrilled by this peculiar activity!")
         print("It will now pick a random word from its vast computer brains for you to divine!")
-        print(f"""                                     
-        /            |   |   /\   |\  |  /¨¨  |\  /|   /\   |\  |             \\
-        |----------- |---|  /--\  | \ | |  -- | \/ |  /--\  | \ |   -----------|
-        \            |   | /    \ |  \|  \../ |    | /    \ |  \|             /
-        
-        Begins in {5-i}...
-        """)
         t.sleep(1)
 
 def chooseWord():
@@ -130,9 +130,7 @@ def playGame():
         clear()
         print(shadowWord)
         print(hangman[hangScore])
-        guess = input("""
-        What is your letter choice?
-        """).lower()
+        guess = input("What is your letter choice?").lower()
         if guess in word:
             shadowWord = fillOut(shadowWord, word, guess)
         else:
