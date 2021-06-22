@@ -22,3 +22,5 @@ cypherChoice = "Choose the number of the cypher (1-25) :\n"
 encodeResultMessage = "Your message has been encoded :\n"
 
 decodeResultMessage = "Here is your decoded message: :\n"
+
+goAgainMessage = "Type (yes) to encode or decode again.\nPress any other button to end.\n"
