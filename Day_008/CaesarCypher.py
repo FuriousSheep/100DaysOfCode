@@ -32,6 +32,7 @@ def getCypherNumber():
     while cypherNumber > 25 or cypherNumber < 1:
         print(C.inputErrorMessage)
         cypherNumber = int(input(C.cypherChoice))
+    return cypherNumber
 
 def encodeMessage():
     message = input(C.encodeMessage).lower()
