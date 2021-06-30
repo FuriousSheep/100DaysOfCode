@@ -7,7 +7,7 @@ def main():
     score = 0
     gameOn = True
     a = 0
-    while gameOn:
+    while gameOn and score < 49:
         system("clear")
         print(L.logo)
         if score > 0:
@@ -30,7 +30,10 @@ def main():
             print(L.logo)
             print(f"Wrong answer. Final score: {score}")
             gameOn = False
+    if score == 49:
+        system("clear")
+        print(L.logo)    
+        print("Wow! You got the max amount of points! You win!")
 
-        
 if __name__ == "__main__":
     main()
