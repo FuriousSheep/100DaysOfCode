@@ -4,33 +4,28 @@ def formatMoney(amount):
     return int(amount*100)/100
 
 def main():
+    money = 0
     while True:
-        #Greet the user, ask their choice
         choice = input("Welcome! What kind of coffee would you like?\nespresso / latte / cappuccino\n")
-        #Check their choice. If invalid, abort.
         if choice == "off":
             return
         elif choice == "report":
             for ingredient in M.resources:
                 print(f"{ingredient}: {M.resources[ingredient]} {M.units[ingredient]}")
+            print(f"Money made: {money} $")
         elif not choice in M.MENU:
             print("Wrong selection, try again later")
-        #If their choice is valid, check if available resources are sufficient in stores
         else:
             coffee = M.MENU[choice]
             missing = 0
             for ingredient in coffee["ingredients"]:
-        #If they are not, abort.
                 if coffee["ingredients"][ingredient] > M.resources[ingredient]:
                     missing = ingredient        
             if not missing == 0:
                 print(f"Sorry, not enough {missing}, try again later.")
                 continue
             else:
-        #If they are, ask for the adequate amount.        
                 print(f"One {choice}, coming up!\nThat will be {coffee[('cost')]}$")
-        #Remember, the user can only pay in instances of:
-        ## Quarters 0.25, dimes 0.10, nickels 0.05 and pennies 0.01
                 quarters = int(input("How many quarters will you insert?"))
                 dimes = int(input("How many dimes will you insert?"))
                 nickels = int(input("How many nickels will you insert?"))
@@ -43,14 +38,8 @@ def main():
                 else:
                     for ingredient in coffee['ingredients']:
                         M.resources[ingredient] -= coffee['ingredients'][ingredient]
+                    money += coffee['cost']
                     print(f"Here's your change: {formatMoney(total - coffee['cost'])}$ and your {choice}.\nSee you soon!")
-        
-    #If it's enough:
-    # 1 deduct the resources from the stores
-    # 2 give the user coffee
-    # 3 give the user change 
-    # 4 thank the user
-
 
 
 if __name__ == "__main__":
