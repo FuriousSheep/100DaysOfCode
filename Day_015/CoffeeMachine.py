@@ -26,11 +26,10 @@ def main():
                 continue
             else:
                 print(f"One {choice}, coming up!\nThat will be {coffee[('cost')]}$")
-                quarters = int(input("How many quarters will you insert?"))
-                dimes = int(input("How many dimes will you insert?"))
-                nickels = int(input("How many nickels will you insert?"))
-                pennies = int(input("How many pennies will you insert?"))
-                total = 0.25*quarters + 0.10*dimes + 0.05*nickels + 0.01*pennies
+                total = int(input("How many quarters will you insert?"))*0.25
+                total += int(input("How many dimes will you insert?"))*0.1
+                total += int(input("How many nickels will you insert?"))*0.05
+                total += int(input("How many pennies will you insert?"))*0.01
 
                 if total < coffee['cost']:
                     print("Not enough money, change refunded. Try again later!")
