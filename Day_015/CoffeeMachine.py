@@ -1,15 +1,18 @@
 import Menu as M
 
-
+def formatMoney(amount):
+    return int(amount*100)/100
 
 def main():
-
     while True:
         #Greet the user, ask their choice
         choice = input("Welcome! What kind of coffee would you like?\nespresso / latte / cappuccino\n")
         #Check their choice. If invalid, abort.
         if choice == "off":
             return
+        elif choice == "report":
+            for ingredient in M.resources:
+                print(f"{ingredient}: {M.resources[ingredient]} {M.units[ingredient]}")
         elif not choice in M.MENU:
             print("Wrong selection, try again later")
         #If their choice is valid, check if available resources are sufficient in stores
@@ -40,7 +43,7 @@ def main():
                 else:
                     for ingredient in coffee['ingredients']:
                         M.resources[ingredient] -= coffee['ingredients'][ingredient]
-                    print(f"Here's your change: {total - coffee['cost']}$ and your {choice}.\nSee you soon!")
+                    print(f"Here's your change: {formatMoney(total - coffee['cost'])}$ and your {choice}.\nSee you soon!")
         
     #If it's enough:
     # 1 deduct the resources from the stores
