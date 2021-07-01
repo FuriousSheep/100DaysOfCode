@@ -1,8 +1,5 @@
 import Menu as M
 
-def formatMoney(amount):
-    return int(amount*100)/100
-
 def main():
     money = 0
     while True:
@@ -38,7 +35,7 @@ def main():
                     for ingredient in coffee['ingredients']:
                         M.resources[ingredient] -= coffee['ingredients'][ingredient]
                     money += coffee['cost']
-                    print(f"Here's your change: {formatMoney(total - coffee['cost'])}$ and your {choice}.\nSee you soon!")
+                    print(f"Here's your change: {round(total - coffee['cost'], 2)}$ and your {choice}.\nSee you soon!")
 
 
 if __name__ == "__main__":
