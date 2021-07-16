@@ -1,18 +1,18 @@
 from question_model import Question
 from data import question_data as data
+from quiz_brain import QuizBrain
+
 
 def main():
-    questions = []
-    score = 0
-    max_score = 0
-
+    question_bank = []
     for e in data:
-        questions.append(Question(e["text"], e["answer"]))
-    
-    for question in questions:
-        score += question.ask_question()
-        max_score += 1
-        print(f"Your score: {score}/{max_score}")
+        question_bank.append(Question(e["text"], e["answer"]))
+    quiz = QuizBrain(question_bank)
+    while quiz.still_has_questions():
+        quiz.next_question()
+    print("You've completed the quiz!")
+    print(f"Your final score was {quiz.score}/{quiz.question_number}")
+
 
 if __name__ == "__main__":
     main()
