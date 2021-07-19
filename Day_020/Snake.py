@@ -2,6 +2,8 @@ import turtle as t
 import random as r
 import time
 import Snake_class as S
+import Food
+import Score
 
 screen = t.Screen()
 screen.bgcolor("#232323")
@@ -12,17 +14,6 @@ screen.tracer(0)
 #### TEXT ####
 
 
-def setup_score():
-    """Writes up the initial score on the screen"""
-    score = t.Turtle()
-    score.penup()
-    score.hideturtle()
-    score.color("#FAFAFA")
-    score.goto(0, screen.window_height()/2 - 40)
-    score.write("Score : 0", align="center", font=("Arial Black", 20))
-    return score
-
-
 def game_lost():
     """Writes up that the game is lost on the screen"""
     lose = t.Turtle()
@@ -30,34 +21,41 @@ def game_lost():
     lose.color("#FAFAFA")
     lose.hideturtle()
     lose.write(
-        arg="You lost! Better luck next time =(",
+        arg="You lost! Better luck next time =)",
         align="center",
         font=("Arial Black", 20)
     )
 
 
-def update_score(score, points):
-    """Changes the score writing to show the updated score"""
-    score.clear()
-    score.write(f"Score : {points}", align="center", font=("Arial Black", 20))
-
-
-#### SNAKE CONTROL ####
+def is_food_being_eaten(food, snake):
+    """Determines if food is in the head space of the snake"""
+    head = snake.head
+    lower_x = head.xcor() - 10
+    higher_x = head.xcor() + 10
+    lower_y = head.ycor() - 10
+    higher_y = head.ycor() + 10
+    food_in_head_case = \
+        food.xcor() >= lower_x and food.xcor() <= higher_x and \
+        food.ycor() >= lower_y and food.ycor() <= higher_y
+    return food_in_head_case
 
 
 #### MAIN ####
 def main():
-    # score = setup_score()
+    score = Score.Score()
     snake = S.Snake()
     snake.set_listeners(screen)
+    food = Food.Food()
     screen.update()
     while not snake.is_dead():
         snake.move()
+        if is_food_being_eaten(food, snake):
+            food.place_food()
+            snake.grow()
+            score.update()
         screen.update()
-        time.sleep(0.15)
-
-    # game_lost()
-
+        time.sleep(0.08)
+    game_lost()
     screen.exitonclick()
 
 

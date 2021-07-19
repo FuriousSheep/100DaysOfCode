@@ -12,9 +12,17 @@ class Snake:
         """Creates a single block to be added to the snake body"""
         snake_part = t.Turtle()
         snake_part.shape("square")
+        snake_part.speed(0)
         snake_part.penup()
         snake_part.color("#FAFAFA", "#232323")
         return snake_part
+
+    def grow(self):
+        new_part = self.new_part()
+        new_part.ht()
+        new_part.goto(self.body[-1].pos())
+        new_part.showturtle()
+        self.body.append(new_part)
 
     def make(self):
         """Initialises the snake by creating and placing three blocks on the screen"""
@@ -68,7 +76,7 @@ class Snake:
         otherwise returns false"""
         x = self.head.xcor()
         y = self.head.ycor()
-        out_of_bounds = x > 300 or x < -300 or y > 300 or y < -300
+        out_of_bounds = x > 270 or x < -270 or y > 270 or y < -270
 
         collided = False
         snake_length = len(self.body)
