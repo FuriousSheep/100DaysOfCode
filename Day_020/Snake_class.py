@@ -80,9 +80,9 @@ class Snake:
 
         collided = False
         snake_length = len(self.body)
-        for i in range(1, snake_length):
-            same_x = isclose(self.head.xcor(), self.body[i].xcor())
-            same_y = isclose(self.head.ycor(), self.body[i].ycor())
+        for snake_part in self.body[1:]:
+            same_x = isclose(self.head.xcor(), snake_part.xcor())
+            same_y = isclose(self.head.ycor(), snake_part.ycor())
             collided = same_x and same_y
             if collided:
                 return True
