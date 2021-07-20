@@ -12,13 +12,9 @@ player = Player()
 player.set_listener(screen=screen)
 car_manager = CarManager()
 scoreboard = Scoreboard()
-
 screen.listen()
 
-game_is_on = True
-i = 4
-
-while game_is_on:
+while not car_manager.has_accident_happened(turtle=player):
     if randint(0, 7) == 7:
         car_manager.make_car()
     car_manager.move_cars()
@@ -26,9 +22,7 @@ while game_is_on:
         scoreboard.update_score()
         car_manager.increase_car_speed()
         player.reset()
-    if car_manager.has_accident_happened(turtle=player):
-        game_is_on = False
     time.sleep(0.1)
     screen.update()
-
+scoreboard.game_over()
 screen.exitonclick()
