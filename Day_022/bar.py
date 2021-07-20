@@ -12,10 +12,12 @@ class Bar(Turtle):
         self.direction = "up"
 
     def up(self):
-        self.sety(self.ycor() + 10)
+        if self.ycor() < 170:
+            self.sety(self.ycor() + 10)
 
     def down(self):
-        self.sety(self.ycor() - 10)
+        if self.ycor() > -170:
+            self.sety(self.ycor() - 10)
 
     def set_player_listeners(self, screen):
         screen.onkey(key="Up", fun=self.up)

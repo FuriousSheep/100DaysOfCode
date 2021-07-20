@@ -5,7 +5,7 @@ SCORE_HEIGHT = 260
 
 class Score():
     def __init__(self, xoffset):
-        self.score = 9
+        self.score = 0
         self.height = SCORE_HEIGHT
         self.xoffset = xoffset
         self.blocks = {}

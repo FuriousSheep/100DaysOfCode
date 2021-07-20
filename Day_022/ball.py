@@ -23,9 +23,15 @@ class Ball(Turtle):
         headings = ANGLES
         return choice(headings)
 
-    # def bounce(self):
-    #     bounces = {30: 150, -30: -150, 150: 30, -150: -30}
-    #     return bounces[self.real_heading]
+    def bar_bounce(self):
+        bounces = {UP_RIGHT: UP_LEFT, UP_LEFT: UP_RIGHT,
+                   DOWN_RIGHT: DOWN_LEFT, DOWN_LEFT: DOWN_RIGHT}
+        self.real_heading = bounces[self.real_heading]
+
+    def tob_bounce(self):
+        bounces = {UP_RIGHT: DOWN_RIGHT, UP_LEFT: DOWN_LEFT,
+                   DOWN_RIGHT: UP_RIGHT, DOWN_LEFT: UP_LEFT}
+        self.real_heading = bounces[self.real_heading]
 
     def move(self):
         self.setheading(self.real_heading)
@@ -35,6 +41,3 @@ class Ball(Turtle):
     def reset(self):
         self.setpos(0, 0)
         self.real_heading = (self.reset_heading())
-
-    def is_out_of_bounds(self):
-        return self.xcor() > 300 or self.xcor() < -300
