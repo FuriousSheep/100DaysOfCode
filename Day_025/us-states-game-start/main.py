@@ -25,8 +25,6 @@ while n_found_states < 50 and game_is_on:
         t = turtle.Turtle()
         t.penup()
         t.hideturtle()
-        t.shape("circle")
-        t.shapesize(0.2, 0.2)
         t.goto(int(state.x), int(state.y))
         t.write(state.state.iloc[0], align="center")
     elif input == "exit":
